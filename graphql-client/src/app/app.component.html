@@ -1,0 +1,13 @@
+<h1>GraphQL</h1>
+
+<div class="customers" *ngIf="customers">
+    <h2>Customers:</h2>
+    <ul>
+        <li *ngFor="let customer of customers">
+            {{customer.id}}
+            {{customer.name}}
+        </li>
+    </ul>
+</div>
+
+<app-add-customer></app-add-customer>
