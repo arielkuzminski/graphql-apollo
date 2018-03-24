@@ -1,0 +1,28 @@
+{
+  "customers": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "jdoe@gmail.com",
+      "age": 35
+    },
+    {
+      "id": "2",
+      "name": "Steven Smith",
+      "email": "ssmith@gmail.com",
+      "age": 25
+    },
+    {
+      "id": "3",
+      "name": "Jan Kowalski",
+      "email": "jkowalski@gmail.com",
+      "age": 17
+    },
+    {
+      "name": "Created",
+      "email": "randommail@gmail.com",
+      "age": 28,
+      "id": "G0m0OM7"
+    }
+  ]
+}
