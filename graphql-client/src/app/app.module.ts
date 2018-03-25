@@ -8,11 +8,13 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { AppComponent } from './app.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AddCustomerComponent,
   ],
   imports: [
     BrowserModule,
