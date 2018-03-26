@@ -23,29 +23,41 @@ export class AddCustomerComponent implements OnInit {
   customer: Customer = {
     name: '',
     email: ''
-  }
+  };
 
   ngOnInit() {}
 
   onSubmit() {
     console.log(this.customer);
 
-    this.apollo.mutate({
-      mutation: addCustomer,
-      variables: {
-        name: this.customer.name,
-        email: this.customer.email,
-        age: Math.floor(Math.random() * 16) + 5,
-      },
-      update: (proxy, { data: { addCustomer } }) => {
-        const data: any = proxy.readQuery({ query: Query.name });
-        data.costumers.push(addCustomer);
-      }
-    }).subscribe(({data}) => {
-      console.log('got data', data);
-
-    }, (error) => {
-      console.log(error);
-    });
+    this.apollo
+      .mutate({
+        mutation: addCustomer,
+        refetchQueries: [
+          {
+            query: gql`
+              query {
+                customers {
+                  id
+                  name
+                }
+              }
+            `
+          }
+        ],
+        variables: {
+          name: this.customer.name,
+          email: this.customer.email,
+          age: Math.floor(Math.random() * 16) + 5
+        }
+      })
+      .subscribe(
+        ({ data }) => {
+          console.log('got data', data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 }

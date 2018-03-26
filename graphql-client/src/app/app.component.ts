@@ -13,18 +13,16 @@ import { Customer } from './types';
 export class AppComponent {
   customers = [];
 
-  constructor(apollo: Apollo) {
-    apollo.query({query: gql`
+  constructor(private apollo: Apollo) {
+    this.apollo.watchQuery<any>({query: gql`
       query {
         customers {
           id
           name
         }
       }
-    `
-    }).subscribe((response => {
-      const data: any = response.data;
+    `}).valueChanges.subscribe(( { data, loading }) => {
       this.customers = data.customers;
-    }));
+    })
   }
 }
