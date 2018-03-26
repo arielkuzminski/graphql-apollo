@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { Customer } from './types';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,9 @@ import gql from 'graphql-tag';
 
 
 export class AppComponent {
+  customers = [];
+
   constructor(apollo: Apollo) {
-    let customers = [];
     apollo.query({query: gql`
       query {
         customers {
@@ -21,8 +23,8 @@ export class AppComponent {
       }
     `
     }).subscribe((response => {
-      console.log(response);
-      this.customers = response.data.customers;
+      const data: any = response.data;
+      this.customers = data.customers;
     }));
   }
 }

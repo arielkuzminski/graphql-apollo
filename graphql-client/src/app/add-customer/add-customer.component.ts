@@ -1,3 +1,4 @@
+import { Customer } from './../types';
 import { Apollo } from 'apollo-angular';
 import { Component, OnInit, Query } from '@angular/core';
 import gql from 'graphql-tag';
@@ -19,7 +20,10 @@ const addCustomer = gql`
 export class AddCustomerComponent implements OnInit {
   constructor(private apollo: Apollo) {}
 
-  customer = {};
+  customer: Customer = {
+    name: '',
+    email: ''
+  }
 
   ngOnInit() {}
 
